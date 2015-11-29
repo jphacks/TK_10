@@ -1,0 +1,133 @@
+#define THERMOUP 5
+#define THERMODOWN 6
+#define TWITTERPIN 7
+#define PERCHEPIN 8
+#define LED 9
+#define ESOURCE 10​
+#define PIN_U 3
+#define PIN_T 4
+
+//タッチセンサー
+bool touchSensor(int pin) {
+  //量の変数を用意
+  int a = 0;
+  int f = 0;
+  digitalWrite(10, HIGH);
+  while (digitalRead(pin) != HIGH && a < 100) {
+    //カウントする
+    a++;
+  }
+  delay(1);
+  digitalWrite(10, LOW);
+
+  //値を滑らかにするフィルタ式
+  f += (a - f) / 2;
+  //モニタリング：フィルタ値を出力
+   if (pin == 7) {
+//      Serial.println(" "+a);
+     } 
+
+  if (f > 20) {
+    return true;
+  } else {
+    return false;
+  }
+}
+
+void setup() {
+  // put your setup code here, to run once:
+
+pinMode(PIN_U,INPUT);
+pinMode(PIN_T,INPUT);
+  pinMode(THERMOUP, INPUT);
+  pinMode(THERMODOWN, INPUT);
+  pinMode(TWITTERPIN, INPUT);
+  pinMode(PERCHEPIN, OUTPUT);
+  pinMode(LED, OUTPUT);
+
+  Serial.begin(9600);
+
+}
+
+void loop() {
+  // put your main code here, to run repeatedly:
+  di#define THERMOUP 5
+#define THERMODOWN 6
+#define TWITTERPIN 7
+#define PERCHEPIN 8
+#define LED 9
+#define ESOURCE 10​
+#define PIN_U 3
+#define PIN_T 4
+
+//タッチセンサー
+bool touchSensor(int pin) {
+  //量の変数を用意
+  int a = 0;
+  int f = 0;
+  digitalWrite(10, HIGH);
+  while (digitalRead(pin) != HIGH && a < 100) {
+    //カウントする
+    a++;
+  }
+  delay(1);
+  digitalWrite(10, LOW);
+
+  //値を滑らかにするフィルタ式
+  f += (a - f) / 2;
+  //モニタリング：フィルタ値を出力
+   if (pin == 7) {
+//      Serial.println(" "+a);
+     } 
+
+  if (f > 20) {
+    return true;
+  } else {
+    return false;
+  }
+}
+
+void setup() {
+  // put your setup code here, to run once:
+
+pinMode(PIN_U,INPUT);
+pinMode(PIN_T,INPUT);
+  pinMode(THERMOUP, INPUT);
+  pinMode(THERMODOWN, INPUT);
+  pinMode(TWITTERPIN, INPUT);
+  pinMode(PERCHEPIN, OUTPUT);
+  pinMode(LED, OUTPUT);
+
+  Serial.begin(9600);
+
+}
+
+void loop() {
+  // put your main code here, to run repeatedly:
+  digitalWrite(PERCHEPIN, LOW);
+  digitalWrite(LED, LOW);
+
+  //Twitterへリプ飛ばし
+  //  Serial.println("here");
+  //  if (Serial.available()) {
+//  Serial.println("Serial.available");
+  if (touchSensor(TWITTERPIN)) {
+          Serial.print(1);
+    //Serial.write(1);
+  } else {
+          Serial.print(0);
+    //Serial.write(0);
+  }
+  //}
+  //温度調節
+  if (touchSensor(THERMOUP)) {
+    digitalWrite(PERCHEPIN, HIGH);
+    digitalWrite(LED, HIGH);
+  }
+
+  if (touchSensor(THERMODOWN)) {
+    digitalWrite(PERCHEPIN, LOW);
+    digitalWrite(LED, LOW);
+  }
+delay(30);
+}
